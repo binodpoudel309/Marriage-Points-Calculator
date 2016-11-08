@@ -1,0 +1,572 @@
+
+package application;
+
+
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
+
+public class Main extends Application {
+	
+	@Override
+	public void start(Stage stage) {    
+		
+		
+		
+		GridPane gridPane=new GridPane();
+	       
+	     //Setting size for the pane 
+		      gridPane.setMinSize(500, 500); 
+		       
+		      //Setting the padding    
+		    gridPane.setPadding(new Insets(10, 10, 10, 10));  
+		      
+		      //Setting the vertical and horizontal gaps between the columns 
+		     gridPane.setVgap(5); 
+		     gridPane.setHgap(5);       
+		      
+		      //Setting the Grid alignment 
+		     gridPane.setAlignment(Pos.CENTER); 
+	       
+	      //Label for name 
+	      Text nameLabel = new Text("Players Name"); 
+	      
+	       TextField pname1 = new TextField();	       
+	       TextField pname2 = new TextField(); 
+	       TextField pname3 = new TextField();  
+	       TextField pname4 = new TextField(); 
+	       TextField pname5 = new TextField();  
+	       TextField pname6 = new TextField(); 
+	       
+	       gridPane.add(nameLabel, 0, 0); 
+	       TextField[] tf = {pname1, pname2, pname3, pname4, pname5, pname6};
+	       int n = 1;
+	       
+	       for(TextField textfield:tf){
+	    	   gridPane.add(textfield, 0, n);
+	    	   n++;
+	       }
+	       
+	       
+	       Text seenorunseen = new Text("Seen");
+	       gridPane.add(seenorunseen, 1, 0); 
+	       
+	    
+		      CheckBox seencheckbox1 = new CheckBox(); 
+		      CheckBox seencheckbox2 = new CheckBox(); 
+		      CheckBox seencheckbox3 = new CheckBox(); 
+		      CheckBox seencheckbox4 = new CheckBox();      
+		      CheckBox seencheckbox5 = new CheckBox(); 
+		      CheckBox seencheckbox6 = new CheckBox(); 
+		      
+	       
+	      CheckBox[] cb = {seencheckbox1, seencheckbox2, seencheckbox3, seencheckbox4, seencheckbox5, seencheckbox6};
+	       int m = 1;
+	       
+	       for(CheckBox checkbox:cb){
+	    	   gridPane.add(checkbox, 1, m);
+	    	   checkbox.setIndeterminate(false); 
+	    	   m++;
+	       }
+	            
+		          
+		      
+		     	      
+		      Text dubli = new Text("Dubli");
+		      gridPane.add(dubli, 2, 0); 
+		      
+		      
+		      
+		      
+		      CheckBox dubli1 = new CheckBox(); 
+		      CheckBox dubli2 = new CheckBox(); 
+		      CheckBox dubli3 = new CheckBox(); 
+		      CheckBox dubli4 = new CheckBox();      
+		      CheckBox dubli5 = new CheckBox(); 
+		      CheckBox dubli6 = new CheckBox(); 
+		      
+	       
+	      CheckBox[] dublicb = {dubli1, dubli2, dubli3, dubli4, dubli5, dubli6};
+	       int dubliy = 1;
+	       
+	       for(CheckBox dcb:dublicb){
+	    	   gridPane.add(dcb, 2,dubliy);
+	    	   dcb.setIndeterminate(false); 
+	    	   dubliy++;
+	       }
+		       
+		      Text winner = new Text("Winner");
+		      
+		      ToggleGroup gamer = new ToggleGroup(); 
+		      
+		      
+		      RadioButton p1 = new RadioButton(); 
+		      p1.setSelected(true);
+		      RadioButton p2 = new RadioButton();
+		      RadioButton p3 = new RadioButton();
+		      RadioButton p4 = new RadioButton();
+		      RadioButton p5 = new RadioButton();
+		      RadioButton p6 = new RadioButton();
+		      RadioButton[] rb = {p1,p2,p3,p4,p5,p6};
+		      
+		      int rby = 1;
+		       
+		       for(RadioButton rbutton:rb){
+		    	   gridPane.add(rbutton, 3,rby);
+		    	   rbutton.setToggleGroup(gamer);
+		    	   rby++;
+
+		       }
+		      
+		        
+		      Text mal = new Text("Mal");
+		         
+		       gridPane.add(mal, 4, 0); 
+		       
+		       TextField malCount1 = new TextField();  
+			     
+			       TextField malCount2 = new TextField();
+			       malCount2.setDisable(true);
+			       TextField malCount3 = new TextField();
+			       malCount3.setDisable(true);
+			       TextField malCount4 = new TextField();
+			       malCount4.setDisable(true);
+			       TextField malCount5 = new TextField();  
+			       malCount5.setDisable(true);
+			       TextField malCount6 = new TextField();
+			       malCount6.setDisable(true);
+		       
+		       TextField[] malCount = {malCount1, malCount2, malCount3, malCount4, malCount5, malCount6};
+		       int malc = 1;
+		       
+		       for(TextField textmal:malCount){
+		    	   gridPane.add(textmal, 4, malc);
+		    	   
+		    	   malc++;
+		       }
+		       
+		     //  malCount1.setDisable(true);
+	    	   malCount1.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount1.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+	    	  // malCount2.setDisable(true);
+	    	   malCount2.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount2.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+	    	 //  malCount3.setDisable(true);
+	    	   malCount3.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount3.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+	    	 //  malCount4.setDisable(true);
+	    	   malCount4.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount4.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+	    	  // malCount5.setDisable(true);
+	    	   malCount5.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount5.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+	    	//   malCount6.setDisable(true);
+	    	   malCount6.textProperty().addListener(new ChangeListener<String>() {
+		           @Override
+		           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		               if (!newValue.matches("\\d*")) {
+		                   malCount6.setText(newValue.replaceAll("[^\\d]", ""));
+		               }
+		           }
+		       });
+		       
+	       
+		       Text pointsearned = new Text("Points");
+		       
+		           TextField points1 = new TextField();  
+			       TextField points2 = new TextField();
+			       
+			       TextField points3 = new TextField();  
+			       TextField points4 = new TextField();
+			       TextField points5 = new TextField();  
+			       TextField points6 = new TextField();
+			       
+	             
+		      	       
+		       gridPane.add(pointsearned, 5, 0); 
+			      gridPane.add(points1, 5, 1); 
+			      gridPane.add(points2, 5, 2);
+			      gridPane.add(points3, 5, 3); 
+			      gridPane.add(points4, 5, 4);
+			      gridPane.add(points5, 5, 5); 
+			      gridPane.add(points6, 5, 6);
+			      
+			      Text gametotal = new Text("Game total($)");
+			      TextField gt1 = new TextField();  
+			       TextField gt2 = new TextField();
+			       
+			       TextField gt3 = new TextField();  
+			       TextField gt4 = new TextField();
+			       TextField gt5 = new TextField();  
+			       TextField gt6 = new TextField();
+			       
+			       TextField[] gt = {gt1,gt2,gt3,gt4,gt5,gt6};
+		      	       
+		       gridPane.add(gametotal, 6, 0); 
+			      gridPane.add(gt1, 6, 1); 
+			      gridPane.add(gt2, 6, 2);
+			      gridPane.add(gt3, 6, 3); 
+			      gridPane.add(gt4, 6, 4);
+			      gridPane.add(gt5, 6, 5); 
+			      gridPane.add(gt6, 6, 6);
+			      
+			      Text total = new Text("Total($)");
+			      TextField t1 = new TextField(); 
+			      t1.setText("0");
+			       TextField t2 = new TextField();
+			       t2.setText("0");
+			       
+			       TextField t3 = new TextField();  
+			       t3.setText("0");
+			       TextField t4 = new TextField();
+			       t4.setText("0");
+			       TextField t5 = new TextField();  
+			       t5.setText("0");
+			       TextField t6 = new TextField();
+			       t6.setText("0");
+			       
+	             TextField[] tt = {t1,t2,t3,t4,t5,t6};
+		      	       
+		       gridPane.add(total, 7, 0); 
+			      gridPane.add(t1, 7, 1); 
+			      gridPane.add(t2, 7, 2);
+			      gridPane.add(t3, 7, 3); 
+			      gridPane.add(t4, 7, 4);
+			      gridPane.add(t5, 7, 5); 
+			      gridPane.add(t6, 7, 6);
+			      
+			     
+			      
+			      
+			      seencheckbox1.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox1.isSelected()==false){
+			            	 malCount1.setDisable(true);
+			            	 malCount1.setText("");
+			            	 
+			             }
+			             else
+			            	 malCount1.setDisable(false); 
+			                 
+			          }
+			        });
+			      
+			      seencheckbox2.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox2.isSelected()==false){
+			            	 malCount2.setDisable(true);
+			            	 malCount2.setText("");
+			            	 
+			             }
+			             else
+			            	 malCount2.setDisable(false); 
+			                 
+			          }
+			        });
+			      seencheckbox3.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox3.isSelected()==false){
+			            	 malCount3.setDisable(true);
+			            	 malCount3.setText("");
+			            	 
+			             }
+			             else
+			            	 malCount3.setDisable(false); 
+			                 
+			          }
+			        });
+			      
+			      seencheckbox4.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox4.isSelected()==false){
+			            	 malCount4.setDisable(true);
+			            	 malCount4.setText("");
+			            	
+			             }
+			             else
+			            	 malCount4.setDisable(false); 
+			                 
+			          }
+			        });
+			      
+			      seencheckbox5.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox5.isSelected()==false){
+			            	 malCount5.setDisable(true);
+			            	 malCount5.setText("");
+			            	 
+			             }
+			             else
+			            	 malCount5.setDisable(false); 
+			                
+			          }
+			        });
+			      seencheckbox6.selectedProperty().addListener(new ChangeListener<Boolean>() {
+			           public void changed(ObservableValue<? extends Boolean> ov,
+			             Boolean old_val, Boolean new_val) {
+			             if(seencheckbox6.isSelected()==false){
+			            	 malCount6.setDisable(true);
+			            	 malCount6.setText("");
+			            	 
+			             }
+			             else
+			            	 malCount6.setDisable(false); 
+			                 
+			          }
+			        });
+			      
+			      Text rate = new Text("Rate in Cents");
+			      TextField ratefield = new TextField("50");  
+			     // ratefield.setText("50");
+			      ratefield.textProperty().addListener(new ChangeListener<String>() {
+			           @Override
+			           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+			               if (!newValue.matches("\\d*")) {
+			                   ratefield.setText(newValue.replaceAll("[^\\d]", ""));
+			               }
+			           }
+			       });
+			      
+			      gridPane.add(rate, 0, 7); 
+			      gridPane.add(ratefield, 0, 8);
+			      
+			      
+			      Button calculatebutton = new Button("Calculate");
+			      gridPane.add(calculatebutton, 4, 7);
+			      
+			      Button save = new Button("Save");
+			      save.setDisable(true);
+			      gridPane.add(save, 5, 7);
+			      Button backsave = new Button("Go Back");
+			      backsave.setDisable(true);
+			      gridPane.add(backsave, 5, 8);
+			      
+			      Label l = new Label("Game Number");
+			      gridPane.add(l, 6, 8);
+			      TextField gn = new TextField();
+			      gn.setText("0");
+			      gn.setDisable(true);
+			      gridPane.add(gn, 7, 8);
+			    
+			      
+			
+			      
+			      calculatebutton.setOnAction(new EventHandler<ActionEvent>() {
+			    	    @Override public void handle(ActionEvent e) {
+			    	    	int players=6,paytowinner=0;
+			    	    	
+			    	    	if (pname6.getText() == null || pname6.getText().trim().isEmpty()) {
+			    	    	     // your code here
+			    	    		players = 5;
+			    	    		if (pname5.getText() == null || pname5.getText().trim().isEmpty()) {
+				    	    	     // your code here
+				    	    		players = 4;
+				    	    		if (pname4.getText() == null || pname4.getText().trim().isEmpty()) {
+					    	    	     // your code here
+					    	    		players = 3;
+					    	    		if (pname3.getText() == null || pname3.getText().trim().isEmpty()) {
+						    	    	     // your code here
+						    	    		players = 2;
+						    	    		if (pname2.getText() == null || pname2.getText().trim().isEmpty()) {
+							    	    	     // your code here
+							    	    		players = 1;
+							    	    	}
+						    	    	}
+					    	    	}
+				    	    	}
+			    	    	}
+			    	    	
+			    	    	int[] i = new int[6];
+			    	    	
+			    	    	int mm = 0;
+			    	    	for(TextField mal: malCount){
+			    	    		String s1 = mal.getText();
+				    	        if (s1 == null || mal.getText().trim().isEmpty()) {
+				    	    	     // your code here
+				    	    		i[mm] = 0;
+				    	    	}
+				    	        else i[mm] = Integer.parseInt(s1);
+				    	        
+				    	        mm++;
+			    	    		
+			    	    	}
+			    	    	
+			    	    	//System.out.println(players);
+			    	        int sum = 0;
+			    	        for(int j = 0;j<6; j++){
+			    	        	sum+=i[j];
+			    	        }
+			    	        
+			    	        System.out.println(i[1]);
+			    	        int[] pay = new int[6];
+			    	        int x = 0;
+			    	        for(TextField playername:tf){
+			    	        	
+			    	        	if (playername.getText() == null || playername.getText().trim().isEmpty()) {
+				    	    	     // your code here
+				    	        	pay[x] = 0;
+				    	        	paytowinner+=0;
+				    	    	}
+				    	        else if(cb[x].isSelected()==false){
+				    	        	pay[x] = -sum-10;
+				    	        	paytowinner+=10;
+				    	        	
+				    	        }
+				    	        if((cb[x].isSelected()==true) && (dublicb[x].isSelected()==false)){
+				    	        	pay[x] = players*i[x]-sum-3;
+				    	        	paytowinner+=3;
+				    	        	
+				    	        	
+				    	        }
+				    	        if((cb[x].isSelected()==true) && (dublicb[x].isSelected()==true)){
+				    	        	pay[x] = players*i[x]-sum;
+				    	        	paytowinner+=0;
+				    	        	
+				    	        	
+				    	        }
+				    	        
+				    	        x++;
+			    	        	
+			    	        }
+			    	        System.out.println(sum);
+			    	        int r=0;
+			    	       for(RadioButton rbutton:rb){
+			    	    	   if(rbutton.isSelected()==true){
+				    	        	pay[r]+=paytowinner;
+				    	        }
+			    	    	   r++;
+			    	       }
+			    	        
+			    	        
+			    	       String[] payfinal = new String[6];
+			    	       String[] g = new String[6];
+			    	       
+			    	       TextField[] points = {points1,points2,points3,points4,points5,points6};
+			    	      
+			    	          	       
+			    	       int aa =0;
+			    	       for(TextField pointsfield:points){
+			    	    	    payfinal[aa]=String.valueOf(pay[aa]);
+				    	        pointsfield.setText(payfinal[aa]);
+				    	        g[aa]=String.valueOf((double)pay[aa]*Integer.parseInt(ratefield.getText())/100);
+				    	        gt[aa].setText(g[aa]);
+				    	        aa++;
+			    	       }
+			    	        
+			    	        
+			    	       
+			    	        save.setDisable(false);
+			    	        
+			    	    }
+			    	});
+			      
+			      save.setOnAction(new EventHandler<ActionEvent>() {
+			    	  
+			    	    @Override public void handle(ActionEvent e) {
+			    	    	
+			    	    	gn.setText(String.valueOf(Integer.parseInt(gn.getText())+1));
+			    	    	
+			    	    	for(int bb = 0; bb<6; bb++){
+			    	    		double[] a = new double[6];
+						    	 double[] b = new double[6];
+				    	    	a[bb] = Double.parseDouble(tt[bb].getText());
+				    	    	b[bb] = Double.parseDouble(gt[bb].getText());
+				    	    	tt[bb].setText(Double.toString(a[bb]+b[bb]));
+			    	    		
+			    	    	}
+			    	    	 backsave.setDisable(false);
+				    	      save.setDisable(true);
+			    	 			    	    	
+			    	    }});
+			      
+			     
+	    	      
+			      backsave.setOnAction(new EventHandler<ActionEvent>() {
+			    	    @Override public void handle(ActionEvent e) {
+			    	    	double a1 = Double.parseDouble(t1.getText());
+			    	    	double d1 = Double.parseDouble(gt1.getText());
+			    	    	t1.setText(Double.toString(a1-d1));
+			    	    	
+			    	    	double a2 = Double.parseDouble(t2.getText());
+			    	    	double d2 = Double.parseDouble(gt2.getText());
+			    	    	t2.setText(Double.toString(a2-d2));
+			    	    	
+			    	    	double a3 = Double.parseDouble(t3.getText());
+			    	    	double d3 = Double.parseDouble(gt3.getText());
+			    	    	t3.setText(Double.toString(a3-d3));
+			    	    	
+			    	    	double a4 = Double.parseDouble(t4.getText());
+			    	    	double d4 = Double.parseDouble(gt4.getText());
+			    	    	t4.setText(Double.toString(a4-d4));
+			    	    	
+			    	    	double a5 = Double.parseDouble(t5.getText());
+			    	    	double d5 = Double.parseDouble(gt5.getText());
+			    	    	t5.setText(Double.toString(a5-d5));
+			    	    	
+			    	    	double a6 = Double.parseDouble(t6.getText());
+			    	    	double d6 = Double.parseDouble(gt6.getText());
+			    	    	t6.setText(Double.toString(a6-d6));
+			    	    	backsave.setDisable(true);
+			    	    	save.setDisable(false);
+			    	    	gn.setText(String.valueOf(Integer.parseInt(gn.getText())-1));
+			    	    }});
+			      
+	     
+	      Scene scene = new Scene(gridPane); 
+	      stage.setTitle("Marriage Points Calculator"); 
+	      stage.setScene(scene);  
+	      stage.show(); 
+	   }      
+	   public static void main(String args[]){ 
+	      launch(args); 
+	   } 
+	}
