@@ -1,0 +1,132 @@
+
+package application;
+
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+
+public class Main extends Application {
+	
+	@Override
+	public void start(Stage stage) {    
+		
+		
+		
+		GridPane gridPane=new GridPane();
+	       
+	     //Setting size for the pane 
+		      gridPane.setMinSize(500, 500); 
+		       
+		      //Setting the padding    
+		    gridPane.setPadding(new Insets(10, 10, 10, 10));  
+		      
+		      //Setting the vertical and horizontal gaps between the columns 
+		     gridPane.setVgap(5); 
+		     gridPane.setHgap(5);       
+		      
+		      //Setting the Grid alignment 
+		     gridPane.setAlignment(Pos.CENTER); 
+	       
+	      //Label for name 
+	      Text nameLabel = new Text("Players Name"); 
+	      
+	       TextField pname1 = new TextField();	       
+	       TextField pname2 = new TextField(); 
+	       TextField pname3 = new TextField();  
+	       TextField pname4 = new TextField(); 
+	       TextField pname5 = new TextField();  
+	       TextField pname6 = new TextField(); 
+	       
+	       gridPane.add(nameLabel, 0, 0); 
+	       TextField[] tf = {pname1, pname2, pname3, pname4, pname5, pname6};
+	       int n = 1;
+	       
+	       for(TextField textfield:tf){
+	    	   gridPane.add(textfield, 0, n);
+	    	   n++;
+	       }
+	       
+	       CheckBox cb1 = new CheckBox();
+	        CheckBox cb2 = new CheckBox();
+	        CheckBox cb3 = new CheckBox();
+	       CheckBox cb4 = new CheckBox();
+	       CheckBox cb5 = new CheckBox();
+	       CheckBox cb6 = new CheckBox();
+	       
+	       
+	       
+	       CheckBox[] cb = {cb1,cb2,cb3, cb4,cb5,cb6};
+	       int m = 1;
+	       for(CheckBox checkb:cb){
+	    	   gridPane.add(checkb, 1, m);
+	    	   m++;
+	       }
+	       
+	       Button bt = new Button("To Textfile");
+	       gridPane.add(bt, 0, 7);
+	       
+	       bt.setOnAction(new EventHandler<ActionEvent>() {
+	    	    @Override public void handle(ActionEvent e) {
+	    	        //To file code
+	    	    	int i = 0;
+	    	    	String[] s1 = new String[6];
+	    	    	String[] s2 = new String[6];
+	    	    	for(TextField textfield:tf){
+	    		    	   s1[i] = textfield.getText();
+	    		    	   s2[i] = Boolean.toString(cb[i].isSelected());
+	    		    			   i++;
+	    		    			   
+	    		       }
+	    	    	
+	    	    	try(FileWriter fw = new FileWriter("printtofile.txt", true);
+	    	    		    BufferedWriter bw = new BufferedWriter(fw);
+	    	    		    PrintWriter out = new PrintWriter(bw))
+	    	    		{
+	    	    		    out.println(Arrays.toString(s1));
+	    	    		    //more code
+	    	    		    out.println(Arrays.toString(s2));
+	    	    		    //more code
+	    	    		} catch (IOException ee) {
+	    	    		    //exception handling left as an exercise for the reader
+	    	    		}
+	    	    	
+	    	    	
+	    	    	
+	    	    }
+	    	});
+	       
+	       
+	       
+	      //Creating a scene object 
+	      Scene scene = new Scene(gridPane); 
+	      
+	      //Setting title to the Stage 
+	      stage.setTitle("Marriage Points Calculator"); 
+	         
+	      //Adding scene to the stage 
+	      stage.setScene(scene);  
+	      
+	      //Displaying the contents of the stage 
+	      stage.show(); 
+	   }      
+	   public static void main(String args[]){ 
+	      launch(args); 
+	   } 
+	}
