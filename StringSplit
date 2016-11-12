@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+
+public class ExampleClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//String w = "boo:and:foo";
+		String w = "[Ram, Shyam, Hari, , , , true, false, true, false, false, false]";
+		w=w.substring(1,w.length()-1);
+		System.out.println(w);
+		for(int i=1;i<=6;i++)	
+		String[] s = w.split(", ");
+		//String[] a;
+		//s[0]=s[0].substring(1, s[0].length());
+		//s[s.length-1]=s[s.length-1].substring(0, s[s.length-1].length()-1);
+	
+		System.out.println(Arrays.toString(s));
+		
+	
+
+	}
+
+}
